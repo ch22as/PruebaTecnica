@@ -1,0 +1,17 @@
+<%= form_with(model: adjunto, local: true) do |form| %>
+  <% if adjunto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(adjunto.errors.count, "error") %> prohibited this adjunto from being saved:</h2>
+
+      <ul>
+      <% adjunto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creador_id: 1
+  receptor_id: 1
+  asunto: MyString
+  contenido: MyString
+  comunicado_anterior_id: 1
+
+two:
+  creador_id: 1
+  receptor_id: 1
+  asunto: MyString
+  contenido: MyString
+  comunicado_anterior_id: 1
