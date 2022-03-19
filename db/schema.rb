@@ -15,6 +15,28 @@ ActiveRecord::Schema.define(version: 2022_03_19_173322) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "adjuntos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comunicados", force: :cascade do |t|
+    t.integer "creador_id"
+    t.integer "receptor_id"
+    t.string "asunto"
+    t.string "contenido"
+    t.integer "comunicado_anterior_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "personas", force: :cascade do |t|
+    t.string "nombre"
+    t.date "fecha_nacimiento"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "proofs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
