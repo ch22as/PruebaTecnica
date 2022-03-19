@@ -1,6 +1,13 @@
 class ComunicadosController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   before_action :set_comunicado, only: %i[ show edit update destroy ]
 
+
+  def legal_age_person_release
+    person = Persona.where('fecha_nacimiento <= ?', Date.today - 18.years )
+    render json:{ resp: person}
+  end
 
   # GET /comunicados or /comunicados.json
   def index
