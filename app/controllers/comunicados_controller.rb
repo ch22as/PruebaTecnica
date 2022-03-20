@@ -3,11 +3,32 @@ class ComunicadosController < ApplicationController
 
   before_action :set_comunicado, only: %i[ show edit update destroy ]
 
+  def releases_legal_age_people_with_attachments_number
+    res = {}
 
-  def legal_age_person_release
-    person = Persona.where('fecha_nacimiento <= ?', Date.today - 18.years )
-    render json:{ resp: person}
+    Persona.legal_age.each_with_index do |person, index|
+      if person.comunicados.present?
+        hash = {}
+        hash[:person] = person.nombre
+        hash[:releases] = []
+        
+        person.comunicados.each do |release|
+          hash2= {}
+          hash2[:release] = release
+          hash2[:attachments_number] = release.adjuntos.count rescue 0
+          
+          hash[:releases] << hash2 
+      
+        end
+        res[index] = hash
+      end
+
+    end
+
+    render json:{ resp: res}
   end
+
+
 
   # GET /comunicados or /comunicados.json
   def index

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :comunicados do
     collection do
-      post :legal_age_person_release
+      post :releases_legal_age_people_with_attachments_number
     end
   end
   resources :adjuntos

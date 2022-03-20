@@ -12,12 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2022_03_19_173322) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "adjuntos", force: :cascade do |t|
+    t.integer "comunicado_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["comunicado_id"], name: "index_adjuntos_on_comunicado_id"
   end
 
   create_table "comunicados", force: :cascade do |t|
@@ -28,6 +27,9 @@ ActiveRecord::Schema.define(version: 2022_03_19_173322) do
     t.integer "comunicado_anterior_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["comunicado_anterior_id"], name: "index_comunicados_on_comunicado_anterior_id"
+    t.index ["creador_id"], name: "index_comunicados_on_creador_id"
+    t.index ["receptor_id"], name: "index_comunicados_on_receptor_id"
   end
 
   create_table "personas", force: :cascade do |t|
