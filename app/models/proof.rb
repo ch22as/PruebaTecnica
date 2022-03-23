@@ -3,7 +3,7 @@ class Proof < ApplicationRecord
   def self.factor_sum(number)
     res = 0
     other = nil
-
+    
     res = (0..number).reduce(:+)
 
     other = Proof::factor_sum(number - 1) if number > 0
@@ -17,13 +17,12 @@ class Proof < ApplicationRecord
     result = []
     number = 0
     
-    divisor.times{ result << [] }
-      
-
     (0...(array.length-1)).each do |pp|
       (0...(divisor)).each do |p|
+
         if number <= array.length
-          result[p]<< array[number] 
+          result[p] = [] if result[p].blank?
+          result[p][pp] = array[number] 
           number += 1
         end
       end
